@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Principal {
+public class Principal{
     public static void main(String[] args) throws ParseException {
         Scanner scanner = new Scanner(System.in);
 
@@ -14,6 +14,7 @@ public class Principal {
         Investimentos investimentos = new Investimentos("BITCOIN", 1000, 3, 052023);
         Emprestimo emprestimo = new Emprestimo(0, 10);
         Pagamentos pagamentos = new Pagamentos((cartao.getLimiteCredito() - cartao.getSaldoDisponivel()),100+ emprestimo.getDivida());
+        ContaPoupanca poupanca = new ContaPoupanca(1000,0.20);
 
 
 
@@ -26,6 +27,7 @@ public class Principal {
             System.out.println(" 3 - INVESTIMENTOS");
             System.out.println(" 4 - EMPRÉSTIMO");
             System.out.println(" 5 - Realizar Pagamentos");
+            System.out.println(" 6 - Conta Poupança");
             System.out.println("0 - Sair");
             int opcao1;
             opcao1 = scanner.nextInt();
@@ -226,6 +228,40 @@ public class Principal {
                     }
                 }
 
+            }
+            else if(opcao1 == 6) {
+                boolean isValidPoupanca = false;
+                while(!isValidPoupanca){
+                    System.out.println("\n--- Conta Poupança ---");
+                    System.out.println("1 - Verificar saldo");
+                    System.out.println("2 - Rendimento Poupança");
+                    System.out.println("3 - Adicionar valor na poupança");
+                    System.out.println("0 - Sair");
+
+                    System.out.print("Escolha uma opção: ");
+                    int opcao = scanner.nextInt();
+
+                    switch (opcao) {
+                        case 1:
+                            System.out.println(poupanca.mostrarSaldoPoupanca());
+                            break;
+                        case 2:
+                            System.out.println(poupanca.redimentoPoupanca());
+                            break;
+                        case 3:
+                            System.out.println("Digite o valor desejado: ");
+                            double valorAumentar = scanner.nextDouble();
+                            poupanca.adicionarValorPoupanca(valorAumentar);
+                            break;
+                        case 0:
+                            isValidPoupanca = true;
+                            break;
+                        default:
+                            System.out.println("Opção inválida.");
+                            break;
+                    }
+
+                }
             }
             else if (opcao1 == 0) {
                 isValid = true;

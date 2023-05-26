@@ -58,4 +58,34 @@ public class Investimentos {
         }
         System.out.println("--------------------------");
     }
+
+    public static void main(String[] args) {
+        Investimentos investimentos = new Investimentos("Poupança", 1000.0, 6.0, 12);
+        investimentos.consultarRentabilidade();
+
+        ContaInvestimento contaInvestimento = new ContaInvestimento(2000.0);
+        contaInvestimento.rendimentoInvestimento();
+    }
+}
+
+class ContaInvestimento {
+    private double saldo;
+
+    public ContaInvestimento(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void rendimentoInvestimento() {
+        double rendimento = saldo * 0.10;
+        saldo += rendimento;
+        System.out.printf("Rendimento de R$ %.2f aplicado. Saldo atual: R$ %.2f\n", rendimento, saldo);
+    }
 }
